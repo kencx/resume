@@ -25,3 +25,10 @@ html: intermediate templates/header.yml
 		templates/header.yml \
 		outputs/intermediate.md
 
+
+pdf: templates/resume.pandoc.tex
+	@${dcp} --standalone \
+		--template templates/resume.pandoc.tex \
+		--output=outputs/resume.pdf \
+		--metadata-file=metadata.json \
+		README.md

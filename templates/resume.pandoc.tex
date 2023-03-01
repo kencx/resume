@@ -1,0 +1,133 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{mdwlist}
+\usepackage[T1]{fontenc}
+\pagestyle{empty}
+\setlength{\tabcolsep}{0em}
+\usepackage{array}
+\newcolumntype{L}{>{\raggedright\arraybackslash}p{0.5\textwidth}}
+\setlength{\parindent}{0cm}
+\usepackage{lmodern}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% indentsection style, used for sections that aren't already in lists
+% that need indentation to the level of all text in the document
+\newenvironment{indentsection}[1]%
+{\begin{list}{}%
+	{\setlength{\leftmargin}{#1}}%
+	\item[]%
+}
+{\end{list}}
+
+% opposite of above; bump a section back toward the left margin
+\newenvironment{unindentsection}[1]%
+{\begin{list}{}%
+	{\setlength{\leftmargin}{-0.5#1}}%
+	\item[]%
+}
+{\end{list}}
+
+% format two pieces of text, one left aligned and one right aligned
+\newcommand{\headerrow}[2]
+{\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
+	#1 &
+	#2 \\
+\end{tabular*}}
+
+\begin{document}
+\begin{center}
+{\LARGE \textbf{$name$}}
+\vspace{0.4em}
+
+$phone$\ \ \textbullet \ \
+$email$\ \ \textbullet \ \
+$linkedin$\ \ \textbullet \ \
+$github$
+\end{center}
+\vspace{-16pt}
+
+\subsection*{EXPERIENCE}
+\vspace{-0.2em}
+\hrule
+\vspace{0.4em}
+	\parskip=0em
+
+    $for(experience)$
+    \headerrow
+		{\textbf{$experience.title$}}
+		{\textbf{$experience.company$}}
+	\vspace{-6pt}
+	\headerrow
+		{\emph{$experience.position$}}
+		{\emph{$experience.date$}}
+	\begin{itemize*}
+        $for(experience.description)$
+	    \item $experience.description$
+        $endfor$
+	\end{itemize*}
+	\vspace{-4pt}
+    $endfor$
+	% \vspace{-16pt}
+
+\subsection*{TECHNICAL SKILLS}
+\vspace{-0.2em}
+\hrule
+\vspace{0.4em}
+	\begin{indentsection}{\parindent}
+	\hyphenpenalty=1000
+	\begin{description*}
+		\item[Software, Languages:]
+		Python, Java, Linux
+		\item[Tools:]
+		Git, Docker, Jenkins, Vagrant, SQL, Jira
+	\end{description*}
+	\end{indentsection}
+	\vspace{-4pt}
+
+\subsection*{EDUCATION}
+\vspace{-0.2em}
+\hrule
+\vspace{0.4em}
+\parskip=0.1em
+
+    $for(education)$
+	\headerrow
+		{\textbf{$education.institution$}}
+		{\textbf{$education.country$}}
+	\vspace{-5pt}
+	\headerrow
+		{$education.programme$}
+		{\emph{$education.date$}}
+    \begin{itemize*}
+        $for(education.description)$
+        \item $education.description$
+        $endfor$
+    \end{itemize*}
+	\vspace{-4pt}
+    $endfor$
+
+\subsection*{EXTRA-CURRICULAR ACTIVITIES}
+\vspace{-0.2em}
+\hrule
+\vspace{0.4em}
+\parskip=0.1em
+
+    $for(extra-curricular)$
+	\headerrow
+		{\textbf{$extra-curricular.title$}}
+		{\textbf{$extra-curricular.country$}}
+	\vspace{-5pt}
+	\headerrow
+        {\emph{$extra-curricular.position$}}
+		{\emph{$extra-curricular.date$}}
+    \begin{itemize*}
+        $for(extra-curricular.description)$
+        \item $extra-curricular.description$
+        $endfor$
+    \end{itemize*}
+	\vspace{-4pt}
+    $endfor$
+
+\end{document}
