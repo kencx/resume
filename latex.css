@@ -200,7 +200,6 @@ body {
 p {
   text-align: justify;
   hyphens: auto;
-  -webkit-hyphens: auto;
   -moz-hyphens: auto;
   margin-top: 1rem;
 }
@@ -286,7 +285,6 @@ table {
 
 th, td {
   text-align: left;
-  padding: 0.25rem;
   line-height: 1.1;
 }
 
@@ -331,37 +329,18 @@ dl dd {
 
 /* Heading typography */
 h1 {
-  font-size: 2.5rem;
   line-height: 3.25rem;
-  margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: 1.7rem;
   line-height: 2rem;
-  margin-top: 2rem;
-}
-
-h3 {
-  font-size: 1.4rem;
-  margin-top: 2.5rem;
-}
-
-h4 {
-  font-size: 1.2rem;
-  margin-top: 2rem;
-}
-
-h5 {
-  font-size: 1rem;
-  margin-top: 1.8rem;
+  margin-top: 0.5rem;
+  border-bottom: 1px solid black;
 }
 
 h6 {
-  font-size: 1rem;
   font-style: italic;
   font-weight: normal;
-  margin-top: 2.5rem;
 }
 
 h3,
@@ -369,28 +348,6 @@ h4,
 h5,
 h6 {
   line-height: 1.625rem;
-}
-
-h1 + h2 {
-  margin-top: 1.625rem;
-}
-
-h2 + h3,
-h3 + h4,
-h4 + h5 {
-  margin-top: 0.8rem;
-}
-
-h5 + h6 {
-  margin-top: -0.8rem;
-}
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-bottom: 0.8rem;
 }
 
 /* custom styling */
@@ -410,7 +367,7 @@ h6 {
 
 .contact > * {
   text-align: center;
-  margin-top: 0;
+  margin-top: -0.5rem;
 }
 
 table ul {
@@ -418,7 +375,6 @@ table ul {
 }
 
 table li {
-  padding: 0.2rem;
 }
 
 .skills > * {
@@ -434,7 +390,7 @@ table li {
 }
 @media only screen and (min-width: 768px) {
   body {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 

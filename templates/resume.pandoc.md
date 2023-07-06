@@ -16,10 +16,10 @@ $phone$ •
 $for(experience)$
 :::{.list-table aligns=l,r header-rows=0}
    * - **$experience.title$**
-     - *$experience.company$*
+     - **$experience.company$**
 
-   * - $experience.position$
-     - $experience.date$
+   * - *$experience.position$*
+     - *$experience.date$*
 
    * - []{colspan=2}
    <ul>
@@ -35,10 +35,10 @@ $endfor$
 $for(education)$
 :::{.list-table aligns=l,r header-rows=0}
    * - **$education.institution$**
-     - *$education.country$*
+     - **$education.country$**
 
-   * - $education.programme$
-     - $education.date$
+   * - *$education.programme$*
+     - *$education.date$*
 
    * - []{colspan=2}
    <ul>
@@ -54,10 +54,10 @@ $endfor$
 $for(extra-curricular)$
 :::{.list-table aligns=l,r header-rows=0}
    * - **$extra-curricular.title$**
-     - *$extra-curricular.country$*
+     - **$extra-curricular.country$**
 
-   * - $extra-curricular.position$
-     - $extra-curricular.date$
+   * - *$extra-curricular.position$*
+     - *$extra-curricular.date$*
 
    * - []{colspan=2}
    <ul>
