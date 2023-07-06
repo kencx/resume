@@ -6,92 +6,43 @@
 */
 
 @font-face {
-  font-family: 'Latin Modern';
+  font-family: 'Latin Modern Sans';
   font-style: normal;
   font-weight: normal;
   font-display: swap;
-  src: url('./fonts/LM-regular.woff2') format('woff2'),
-    url('./fonts/LM-regular.woff') format('woff'),
-    url('./fonts/LM-regular.ttf') format('truetype');
+  src: url('./fonts/lmsans10-regular-webfont.woff') format('woff'),
+       url('./fonts/lmsans10-regular-webfont.woff2') format('woff2'),
+       url('./fonts/lmsans10-regular-webfont.ttf') format('truetype'),
 }
 
 @font-face {
-  font-family: 'Latin Modern';
+  font-family: 'Latin Modern Sans';
   font-style: italic;
   font-weight: normal;
   font-display: swap;
-  src: url('./fonts/LM-italic.woff2') format('woff2'),
-    url('./fonts/LM-italic.woff') format('woff'),
-    url('./fonts/LM-italic.ttf') format('truetype');
+  src: url('./fonts/lmsans10-oblique-webfont.woff') format('woff'),
+       url('./fonts/lmsans10-oblique-webfont.woff2') format('woff2'),
+       url('./fonts/lmsans10-oblique-webfont.ttf') format('truetype'),
 }
 
 @font-face {
-  font-family: 'Latin Modern';
+  font-family: 'Latin Modern Sans';
   font-style: normal;
   font-weight: bold;
   font-display: swap;
-  src: url('./fonts/LM-bold.woff2') format('woff2'),
-    url('./fonts/LM-bold.woff') format('woff'),
-    url('./fonts/LM-bold.ttf') format('truetype');
+  src: url('./fonts/lmsans10-bold-webfont.woff') format('woff'),
+       url('./fonts/lmsans10-bold-webfont.woff2') format('woff2'),
+       url('./fonts/lmsans10-bold-webfont.ttf') format('truetype'),
 }
 
 @font-face {
-  font-family: 'Latin Modern';
+  font-family: 'Latin Modern Sans';
   font-style: italic;
   font-weight: bold;
   font-display: swap;
-  src: url('./fonts/LM-bold-italic.woff2') format('woff2'),
-    url('./fonts/LM-bold-italic.woff') format('woff'),
-    url('./fonts/LM-bold-italic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url('./fonts/Libertinus-regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: italic;
-  font-weight: normal;
-  font-display: swap;
-  src: url('./fonts/Libertinus-italic.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: normal;
-  font-weight: bold;
-  font-display: swap;
-  src: url('./fonts/Libertinus-bold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: italic;
-  font-weight: bold;
-  font-display: swap;
-  src: url('./fonts/Libertinus-bold-italic.woff2') format('woff2');
-}
-
-@font-face {
-
-  font-family: 'Libertinus';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('./fonts/Libertinus-semibold.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Libertinus';
-  font-style: italic;
-  font-weight: 600;
-  font-display: swap;
-  src: url('./fonts/Libertinus-semibold-italic.woff2') format('woff2');
+  src: url('./fonts/lmsans10-boldoblique-webfont.woff') format('woff'),
+       url('./fonts/lmsans10-boldoblique-webfont.woff2') format('woff2'),
+       url('./fonts/lmsans10-boldoblique-webfont.ttf') format('truetype'),
 }
 
 /* Box sizing rules */
@@ -174,19 +125,15 @@ html {
   }
 }
 
-body.libertinus {
-  font-family: 'Libertinus', Georgia, Cambria, 'Times New Roman', Times, serif;
-}
-
 body {
-  font-family: 'Latin Modern', Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: 'Latin Modern Sans', Georgia, Cambria, 'Times New Roman', sans-serif;
   line-height: 1.8;
 
   max-width: 80ch;
   min-height: 100vh;
   overflow-x: hidden;
   margin: 0 auto;
-  padding: 2rem 1.25rem;
+  padding: 1.5rem 0rem;
 
   counter-reset: theorem definition sidenote-counter;
 
@@ -358,7 +305,7 @@ h6 {
   font-size: 10pt;
   margin: 0;
   padding: 0;
-  margin-top: -80px;
+  margin-top: -75px;
 }
 
 .title {
