@@ -1,7 +1,7 @@
 # $name$ {.title}
 
 :::{.no-print .downloads}
-This resume was generated with pandoc, download it as DOC or PDF
+Download or print this page directly as PDF
 :::
 
 :::{.contact}
