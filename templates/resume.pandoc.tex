@@ -5,6 +5,7 @@
 \usepackage[T1]{fontenc}
 \pagestyle{empty}
 \setlength{\tabcolsep}{0em}
+\usepackage{hyperref}
 \usepackage{array}
 \newcolumntype{L}{>{\raggedright\arraybackslash}p{0.5\textwidth}}
 \setlength{\parindent}{0cm}
@@ -42,9 +43,10 @@
 \vspace{0.4em}
 
 $phone$\ \ \textbullet \ \
-$email$\ \ \textbullet \ \
-$linkedin$\ \ \textbullet \ \
-$github$
+\href{mailto:$email$}{$email$}\ \ \textbullet \ \
+\href{https://$linkedin$}{Linkedin}\ \ \textbullet \ \
+\href{https://$github$}{$github$} \ \ \textbullet \ \
+\href{https://$homepage$}{$homepage$}
 \end{center}
 \vspace{-16pt}
 
@@ -56,32 +58,39 @@ $github$
 
     $for(experience)$
     \headerrow
-		{\textbf{$experience.title$}}
-		{\textbf{$experience.company$}}
+		{\textbf{$it.title$}}
+		{\textbf{$it.company$}}
 	\vspace{-6pt}
 	\headerrow
-		{\emph{$experience.position$}}
-		{\emph{$experience.date$}}
+		{\emph{$it.position$}}
+		{\emph{$it.date$}}
 	\begin{itemize*}
-        $for(experience.description)$
-	    \item $experience.description$
+        $for(it.description)$
+	    \item $it$
         $endfor$
 	\end{itemize*}
 	\vspace{-4pt}
     $endfor$
-	% \vspace{-16pt}
 
 \subsection*{TECHNICAL SKILLS}
 \vspace{-0.2em}
 \hrule
 \vspace{0.4em}
+
 	\begin{indentsection}{\parindent}
 	\hyphenpenalty=1000
 	\begin{description*}
-		\item[Software, Languages:]
-		Python, Java, Linux
-		\item[Tools:]
-		Git, Docker, Jenkins, Vagrant, SQL, Jira
+        $for(skills)$
+		\item[$it.name$:]
+            $if(it.keywords/allbutlast)$
+                $for(it.keywords/allbutlast)$
+                    $it$,
+                $endfor$
+                $it.keywords/last$
+            $else$
+                $it.keywords/last$
+            $endif$
+        $endfor$
 	\end{description*}
 	\end{indentsection}
 	\vspace{-4pt}
@@ -94,17 +103,45 @@ $github$
 
     $for(education)$
 	\headerrow
-		{\textbf{$education.institution$}}
-		{\textbf{$education.country$}}
+		{\textbf{$it.institution$}}
+		{\textbf{$it.country$}}
 	\vspace{-5pt}
 	\headerrow
-		{$education.programme$}
-		{\emph{$education.date$}}
+		{$it.programme$}
+		{\emph{$it.date$}}
     \begin{itemize*}
-        $for(education.description)$
-        \item $education.description$
+        $for(it.description)$
+        \item $it$
         $endfor$
     \end{itemize*}
+	\vspace{-4pt}
+    $endfor$
+
+\subsection*{PROJECTS}
+\vspace{-0.2em}
+\hrule
+\vspace{0.4em}
+	\parskip=0em
+
+    $for(projects)$
+    \headerrow
+		{\textbf{$it.title$}}
+		{
+        $if(it.keywords/allbutlast)$
+            $for(it.keywords/allbutlast)$
+                $it$,
+            $endfor$
+            $it.keywords/last$
+        $else$
+            $it.keywords/last$
+        $endif$
+        }
+    \vspace{-16pt}
+	\begin{itemize*}
+        $for(it.description)$
+	    \item $it$
+        $endfor$
+	\end{itemize*}
 	\vspace{-4pt}
     $endfor$
 
@@ -116,18 +153,31 @@ $github$
 
     $for(extra-curricular)$
 	\headerrow
-		{\textbf{$extra-curricular.title$}}
-		{\textbf{$extra-curricular.country$}}
+		{\textbf{$it.title$}}
+		{\textbf{$it.country$}}
 	\vspace{-5pt}
 	\headerrow
-        {\emph{$extra-curricular.position$}}
-		{\emph{$extra-curricular.date$}}
+        {\emph{$it.position$}}
+		{\emph{$it.date$}}
     \begin{itemize*}
-        $for(extra-curricular.description)$
-        \item $extra-curricular.description$
+        $for(it.description)$
+        \item $it$
         $endfor$
     \end{itemize*}
 	\vspace{-4pt}
     $endfor$
+
+\subsection*{INTERESTS}
+\vspace{-0.2em}
+\hrule
+\vspace{0.4em}
+\parskip=0.4em
+
+    \begin{itemize*}
+        $for(interests)$
+        \item $it.title$
+        $endfor$
+    \end{itemize*}
+	\vspace{-4pt}
 
 \end{document}

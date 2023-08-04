@@ -15,35 +15,69 @@ $phone$ •
 
 $for(experience)$
 :::{.list-table aligns=l,r header-rows=0}
-   * - **$experience.title$**
-     - **$experience.company$**
+   * - **$it.title$**
+     - **$it.company$**
 
-   * - *$experience.position$*
-     - *$experience.date$*
+   * - *$it.position$*
+     - *$it.date$*
 
    * - []{colspan=2}
    <ul>
-$for(experience.description)$
-     <li>$experience.description$</li>
+$for(it.description)$
+     <li>$it$</li>
 $endfor$
    </ul>
 :::
 $endfor$
 
+## Technical Skills
+
+:::{.skills}
+<ul>
+$for(skills)$
+<li>**$it.name$:**
+    $if(it.keywords/allbutlast)$
+        $for(it.keywords/allbutlast)$
+            $it$,
+        $endfor$
+        $it.keywords/last$
+    $else$
+        $it.keywords/last$
+    $endif$
+</li>
+$endfor$
+</ul>
+:::
+
 ## Education
 
 $for(education)$
 :::{.list-table aligns=l,r header-rows=0}
-   * - **$education.institution$**
-     - **$education.country$**
+   * - **$it.institution$**
+     - **$it.country$**
 
-   * - *$education.programme$*
-     - *$education.date$*
+   * - *$it.programme$*
+     - *$it.date$*
 
    * - []{colspan=2}
    <ul>
-$for(education.description)$
-     <li>$education.description$</li>
+$for(it.description)$
+     <li>$it$</li>
+$endfor$
+   </ul>
+:::
+$endfor$
+
+## Projects
+
+$for(projects)$
+:::{.list-table aligns=l,r header-rows=1}
+   * - $it.title$
+     - $if(it.keywords/allbutlast)$ $for(it.keywords/allbutlast)$ $it$, $endfor$ $it.keywords/last$ $else$ $it.keywords/last$ $endif$
+   * - []{colspan=2}
+   <ul>
+$for(it.description)$
+     <li>$it$</li>
 $endfor$
    </ul>
 :::
@@ -53,26 +87,25 @@ $endfor$
 
 $for(extra-curricular)$
 :::{.list-table aligns=l,r header-rows=0}
-   * - **$extra-curricular.title$**
-     - **$extra-curricular.country$**
+   * - **$it.title$**
+     - **$it.country$**
 
-   * - *$extra-curricular.position$*
-     - *$extra-curricular.date$*
+   * - *$it.position$*
+     - *$it.date$*
 
    * - []{colspan=2}
    <ul>
-$for(extra-curricular.description)$
-     <li>$extra-curricular.description$</li>
+$for(it.description)$
+     <li>$it$</li>
 $endfor$
    </ul>
 :::
 $endfor$
 
-## Technical Skills
-
-:::{.skills}
-* Software: Python, Java, Linux
-* Tools: Git, Docker, Ansible, Terraform
-:::
-
 ## Interests
+
+:::{.interests}
+$for(interests)$
+* $it.title$
+$endfor$
+:::

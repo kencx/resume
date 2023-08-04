@@ -328,8 +328,14 @@ table li {
 
 .skills > * {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.interests > * {
+  margin-top: 0;
   line-height: 1.4;
 }
 
