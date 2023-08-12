@@ -30,10 +30,19 @@
 }
 {\end{list}}
 
+\def\sectionSpace{\vspace{-10pt}}
+
+% resumesection for new resume section
+\newcommand\resumesection[1]
+{\subsection*{#1}
+\vspace{-0.2em}
+\hrule
+\vspace{0.4em}}
+
 % format two pieces of text, one left aligned and one right aligned
 \newcommand{\headerrow}[2]
 {\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
-	#1 &
+    #1 &
 	#2 \\
 \end{tabular*}}
 
@@ -50,32 +59,28 @@ $phone$\ \ \textbullet \ \
 \end{center}
 \vspace{-16pt}
 
-\subsection*{EXPERIENCE}
-\vspace{-0.2em}
-\hrule
-\vspace{0.4em}
-	\parskip=0em
+\resumesection{Experience}
+\parskip=0em
 
     $for(experience)$
     \headerrow
-		{\textbf{$it.title$}}
 		{\textbf{$it.company$}}
-	\vspace{-6pt}
+		{\textbf{$it.date$}}
+	\vspace{-4pt}
 	\headerrow
-		{\emph{$it.position$}}
-		{\emph{$it.date$}}
+        {$it.title$}
+		{$it.country$}
 	\begin{itemize*}
         $for(it.description)$
 	    \item $it$
         $endfor$
 	\end{itemize*}
-	\vspace{-4pt}
+	\vspace{-2pt}
     $endfor$
+    \sectionSpace
 
-\subsection*{TECHNICAL SKILLS}
-\vspace{-0.2em}
-\hrule
-\vspace{0.4em}
+\resumesection{Skills}
+\parskip=0.1em
 
 	\begin{indentsection}{\parindent}
 	\hyphenpenalty=1000
@@ -93,84 +98,66 @@ $phone$\ \ \textbullet \ \
         $endfor$
 	\end{description*}
 	\end{indentsection}
-	\vspace{-4pt}
+	\sectionSpace
 
-\subsection*{EDUCATION}
-\vspace{-0.2em}
-\hrule
-\vspace{0.4em}
+\resumesection{Education}
 \parskip=0.1em
 
     $for(education)$
 	\headerrow
 		{\textbf{$it.institution$}}
-		{\textbf{$it.country$}}
+		{\textbf{$it.date$}}
 	\vspace{-5pt}
 	\headerrow
 		{$it.programme$}
-		{\emph{$it.date$}}
+		{$it.country$}
     \begin{itemize*}
         $for(it.description)$
         \item $it$
         $endfor$
     \end{itemize*}
-	\vspace{-4pt}
+	\vspace{-2pt}
     $endfor$
+	\sectionSpace
 
-\subsection*{PROJECTS}
-\vspace{-0.2em}
-\hrule
-\vspace{0.4em}
-	\parskip=0em
+\resumesection{Projects}
+\parskip=0em
 
     $for(projects)$
     \headerrow
 		{\textbf{$it.title$}}
-		{
-        $if(it.keywords/allbutlast)$
-            $for(it.keywords/allbutlast)$
-                $it$,
-            $endfor$
-            $it.keywords/last$
-        $else$
-            $it.keywords/last$
-        $endif$
-        }
+		{}
     \vspace{-16pt}
 	\begin{itemize*}
         $for(it.description)$
 	    \item $it$
         $endfor$
 	\end{itemize*}
-	\vspace{-4pt}
+	\vspace{-2pt}
     $endfor$
+	\sectionSpace
 
-\subsection*{EXTRA-CURRICULAR ACTIVITIES}
-\vspace{-0.2em}
-\hrule
-\vspace{0.4em}
+\resumesection{Extra-Curricular Activities}
 \parskip=0.1em
 
     $for(extra-curricular)$
 	\headerrow
 		{\textbf{$it.title$}}
-		{\textbf{$it.country$}}
+		{\textbf{$it.date$}}
 	\vspace{-5pt}
 	\headerrow
-        {\emph{$it.position$}}
-		{\emph{$it.date$}}
+        {$it.position$}
+		{}
     \begin{itemize*}
         $for(it.description)$
         \item $it$
         $endfor$
     \end{itemize*}
-	\vspace{-4pt}
+	\vspace{-2pt}
     $endfor$
+	\sectionSpace
 
-\subsection*{INTERESTS}
-\vspace{-0.2em}
-\hrule
-\vspace{0.4em}
+\resumesection{Interests}
 \parskip=0.4em
 
     \begin{itemize*}
@@ -178,6 +165,5 @@ $phone$\ \ \textbullet \ \
         \item $it.title$
         $endfor$
     \end{itemize*}
-	\vspace{-4pt}
 
 \end{document}
