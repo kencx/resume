@@ -126,33 +126,13 @@ $phone$\ \ \textbullet \ \
     $for(projects)$
     \headerrow
 		{\textbf{$it.title$}}
-		{}
+        {\href{$it.url$}{Github}}
     \vspace{-16pt}
 	\begin{itemize*}
         $for(it.description)$
 	    \item $it$
         $endfor$
 	\end{itemize*}
-	\vspace{-2pt}
-    $endfor$
-	\sectionSpace
-
-\resumesection{Extra-Curricular Activities}
-\parskip=0.1em
-
-    $for(extra-curricular)$
-	\headerrow
-		{\textbf{$it.title$}}
-		{\textbf{$it.date$}}
-	\vspace{-5pt}
-	\headerrow
-        {$it.position$}
-		{}
-    \begin{itemize*}
-        $for(it.description)$
-        \item $it$
-        $endfor$
-    \end{itemize*}
 	\vspace{-2pt}
     $endfor$
 	\sectionSpace

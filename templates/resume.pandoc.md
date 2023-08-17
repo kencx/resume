@@ -5,8 +5,8 @@ Download or print this page directly as PDF
 :::
 
 :::{.contact}
-[$email$](mailto:$email$) •
 $phone$ •
+[$email$](mailto:$email$) •
 [$linkedin$](https://linkedin/in/$linkedin$) •
 [$github$](https://github.com/$github$)
 :::
@@ -15,11 +15,11 @@ $phone$ •
 
 $for(experience)$
 :::{.list-table aligns=l,r header-rows=0}
-   * - **$it.title$**
-     - **$it.company$**
+   * - **$it.company$**
+     - **$it.date$**
 
-   * - *$it.position$*
-     - *$it.date$*
+   * - $it.title$
+     - $it.country$
 
    * - []{colspan=2}
    <ul>
@@ -30,7 +30,7 @@ $endfor$
 :::
 $endfor$
 
-## Technical Skills
+## Skills
 
 :::{.skills}
 <ul>
@@ -54,10 +54,10 @@ $endfor$
 $for(education)$
 :::{.list-table aligns=l,r header-rows=0}
    * - **$it.institution$**
-     - **$it.country$**
+     - **$it.date$**
 
    * - *$it.programme$*
-     - *$it.date$*
+     - *$it.country$*
 
    * - []{colspan=2}
    <ul>
@@ -73,25 +73,7 @@ $endfor$
 $for(projects)$
 :::{.list-table aligns=l,r header-rows=1}
    * - $it.title$
-     - $if(it.keywords/allbutlast)$ $for(it.keywords/allbutlast)$ $it$, $endfor$ $it.keywords/last$ $else$ $it.keywords/last$ $endif$
-   * - []{colspan=2}
-   <ul>
-$for(it.description)$
-     <li>$it$</li>
-$endfor$
-   </ul>
-:::
-$endfor$
-
-## Extra-Curricular
-
-$for(extra-curricular)$
-:::{.list-table aligns=l,r header-rows=0}
-   * - **$it.title$**
-     - **$it.country$**
-
-   * - *$it.position$*
-     - *$it.date$*
+     - $if(it.url)$[Github]($it.url$)$endif$
 
    * - []{colspan=2}
    <ul>
@@ -102,9 +84,9 @@ $endfor$
 :::
 $endfor$
 
-## Interests
+## Interests {.no-print}
 
-:::{.interests}
+:::{.interests .no-print}
 $for(interests)$
 * $it.title$
 $endfor$

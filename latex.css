@@ -129,7 +129,7 @@ body {
   font-family: 'Latin Modern Sans', Georgia, Cambria, 'Times New Roman', sans-serif;
   line-height: 1.8;
 
-  max-width: 80ch;
+  max-width: 88ch;
   min-height: 100vh;
   overflow-x: hidden;
   margin: 0 auto;
@@ -280,11 +280,10 @@ h1 {
 }
 
 h2 {
-  line-height: 2rem;
-  margin-top: 0.5rem;
+  line-height: 1.8rem;
+  /* margin-top: 0.5rem; */
   border-bottom: 1px solid black;
   font-size: 1.1rem;
-  text-transform: uppercase;
 }
 
 h6 {
@@ -331,7 +330,7 @@ table li {
   padding-left: 0;
   margin-top: 0;
   margin-bottom: 0;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .interests > * {
@@ -366,6 +365,7 @@ table li {
   body {
     font-size: 12pt;
     max-width: 100%;
+    padding-top: 0;
   }
 
   a, a:visited {
@@ -374,7 +374,7 @@ table li {
 
   hr {
     height: 1px;
-    border: 0;
+    /* border: 0; */
     border-bottom: 1px solid black;
   }
 
@@ -405,12 +405,14 @@ table li {
   }
 
   @page :left {
-    margin: 15mm 20mm 15mm 10mm;
-}
+    margin: 5mm 20mm 5mm 10mm;
+    margin-top: 0;
+  }
 
   @page :right {
-    margin: 15mm 10mm 15mm 20mm;
-}
+    margin: 5mm 10mm 5mm 20mm;
+    margin-top: 0;
+  }
 
   p, h2, h3 {
     orphans: 3;
