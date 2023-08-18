@@ -366,6 +366,7 @@ table li {
     font-size: 12pt;
     max-width: 100%;
     padding-top: 0;
+    padding-bottom: 0;
   }
 
   a, a:visited {
