@@ -65,3 +65,4 @@ $ docker compose run --rm pandoc --standalone \
 
 - [latex.css](https://github.com/vincentdoerig/latex-css)
 - [lua-filters](https://github.com/pandoc/lua-filters/)
+- [box-icons](https://boxicons.com/)

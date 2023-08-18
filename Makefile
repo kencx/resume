@@ -6,7 +6,7 @@ dcp := docker compose run --rm pandoc
 default: all
 
 serve:
-	@python3 -m http.server -d outputs 8081
+	@python3 -m http.server 8081
 
 clean:
 	rm outputs/*
