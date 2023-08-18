@@ -5,7 +5,7 @@ An automated resume generation workflow.
 [Pandoc](https://pandoc.org/) is used to generate a resume in multiple formats
 (pdf, html) from the [jsonresume](https://jsonresume.org/) schema.
 
-See @ [resume.cheo.dev](https://resume.cheo.dev)
+[Demo](https://kencx.github.io/resume) | [Actual Resume](https://resume.cheo.dev)
 
 ## Manual Usage
 

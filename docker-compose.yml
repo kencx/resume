@@ -2,8 +2,8 @@ version: '3.6'
 services:
   pandoc:
     build: .
+    image: kencx/pandoc
     container_name: pandoc
-    user: 1000:1000
     restart: unless-stopped
     volumes:
       - ".:/data"
