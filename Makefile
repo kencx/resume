@@ -1,9 +1,12 @@
+metadata ?= schema.json
 dcp := docker compose run --rm pandoc
 
-.PHONY: serve clean version html
+.PHONY: serve clean version intermediate html pdf all
+
+default: all
 
 serve:
-	@python3 -m http.server
+	@python3 -m http.server -d outputs 8081
 
 clean:
 	rm outputs/*
@@ -11,11 +14,11 @@ clean:
 version:
 	@${dcp} --version
 
-intermediate: metadata.json templates/resume.pandoc.md
+intermediate: templates/resume.pandoc.md
 	@${dcp} --standalone \
 		--template=templates/resume.pandoc.md \
 		--output=outputs/intermediate.md \
-		--metadata-file=metadata.json \
+		--metadata-file=${metadata} \
 		README.md
 
 html: intermediate templates/header.yml
@@ -25,10 +28,11 @@ html: intermediate templates/header.yml
 		templates/header.yml \
 		outputs/intermediate.md
 
-
 pdf: templates/resume.pandoc.tex
 	@${dcp} --standalone \
 		--template templates/resume.pandoc.tex \
 		--output=outputs/resume.pdf \
-		--metadata-file=metadata.json \
+		--metadata-file=${metadata} \
 		README.md
+
+all: html pdf

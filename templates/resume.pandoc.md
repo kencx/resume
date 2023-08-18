@@ -1,29 +1,37 @@
-# $name$ {.title}
+# $basics.name$ {.title}
 
 :::{.no-print .downloads}
-Download or print this page directly as PDF
+This resume is automatically [generated](https://github.com/kencx/resume). Available as [print](javascript:if(window.print)window.print()), [pdf](./resume.pdf) and docx.
 :::
 
 :::{.contact}
-$phone$ •
-[$email$](mailto:$email$) •
-[$linkedin$](https://linkedin/in/$linkedin$) •
-[$github$](https://github.com/$github$)
+$if(basics.phone)$
+$basics.phone$ •
+$endif$
+$if(basics.email)$
+$basics.email$ •
+$endif$
+$for(basics.profiles)$
+[$it.network$](https://$it.url$) •
+$endfor$
+$if(basics.url)$
+[$basics.url$](https://$basics.url$)
+$endif$
 :::
 
 ## Experience
 
-$for(experience)$
+$for(work)$
 :::{.list-table aligns=l,r header-rows=0}
-   * - **$it.company$**
-     - **$it.date$**
+   * - **$it.name$**
+     - **$it.startDate$ — $it.endDate$**
 
-   * - $it.title$
-     - $it.country$
+   * - $it.position$
+     - $it.location$
 
    * - []{colspan=2}
    <ul>
-$for(it.description)$
+$for(it.highlights)$
      <li>$it$</li>
 $endfor$
    </ul>
@@ -54,14 +62,14 @@ $endfor$
 $for(education)$
 :::{.list-table aligns=l,r header-rows=0}
    * - **$it.institution$**
-     - **$it.date$**
+     - **$it.startDate$ — $it.endDate$**
 
-   * - *$it.programme$*
-     - *$it.country$*
+   * - $it.area$
+     - $it.location$
 
    * - []{colspan=2}
    <ul>
-$for(it.description)$
+$for(it.courses)$
      <li>$it$</li>
 $endfor$
    </ul>
@@ -72,12 +80,12 @@ $endfor$
 
 $for(projects)$
 :::{.list-table aligns=l,r header-rows=1}
-   * - $it.title$
+   * - $it.name$
      - $if(it.url)$[Github]($it.url$)$endif$
 
    * - []{colspan=2}
    <ul>
-$for(it.description)$
+$for(it.highlights)$
      <li>$it$</li>
 $endfor$
    </ul>
@@ -88,6 +96,6 @@ $endfor$
 
 :::{.interests .no-print}
 $for(interests)$
-* $it.title$
+* $it.name$
 $endfor$
 :::

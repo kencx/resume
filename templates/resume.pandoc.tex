@@ -40,7 +40,7 @@
 \vspace{0.4em}}
 
 % format two pieces of text, one left aligned and one right aligned
-\newcommand{\headerrow}[2]
+\newcommand\headerrow[2]
 {\begin{tabular*}{\linewidth}{l@{\extracolsep{\fill}}r}
     #1 &
 	#2 \\
@@ -48,30 +48,40 @@
 
 \begin{document}
 \begin{center}
-{\LARGE \textbf{$name$}}
+{\LARGE \textbf{$basics.name$}}
 \vspace{0.4em}
 
-$phone$\ \ \textbullet \ \
-\href{mailto:$email$}{$email$}\ \ \textbullet \ \
-\href{https://$linkedin$}{Linkedin}\ \ \textbullet \ \
-\href{https://$github$}{$github$} \ \ \textbullet \ \
-\href{https://$homepage$}{$homepage$}
+$if(basics.phone)$
+    $basics.phone$\ \
+    \textbullet \ \
+$endif$
+$if(basics.email)$
+    \href{mailto:$basics.email$}{$basics.email$}\ \
+    \textbullet \ \
+$endif$
+$for(basics.profiles)$
+    \href{https://$it.url$}{$it.url$}\ \
+    \textbullet \ \
+$endfor$
+$if(basics.url)$
+    \href{https://$basics.url$}{$basics.url$}
+$endif$
 \end{center}
 \vspace{-16pt}
 
 \resumesection{Experience}
 \parskip=0em
 
-    $for(experience)$
+    $for(work)$
     \headerrow
-		{\textbf{$it.company$}}
-		{\textbf{$it.date$}}
+		{\textbf{$it.name$}}
+		{\textbf{$it.startDate$ — $it.endDate$}}
 	\vspace{-4pt}
 	\headerrow
-        {$it.title$}
-		{$it.country$}
+        {$it.position$}
+		{$it.location$}
 	\begin{itemize*}
-        $for(it.description)$
+        $for(it.highlights)$
 	    \item $it$
         $endfor$
 	\end{itemize*}
@@ -106,13 +116,13 @@ $phone$\ \ \textbullet \ \
     $for(education)$
 	\headerrow
 		{\textbf{$it.institution$}}
-		{\textbf{$it.date$}}
+		{\textbf{$it.startDate$ — $it.endDate$}}
 	\vspace{-5pt}
 	\headerrow
-		{$it.programme$}
-		{$it.country$}
+		{$it.area$}
+		{$it.location$}
     \begin{itemize*}
-        $for(it.description)$
+        $for(it.courses)$
         \item $it$
         $endfor$
     \end{itemize*}
@@ -125,11 +135,11 @@ $phone$\ \ \textbullet \ \
 
     $for(projects)$
     \headerrow
-		{\textbf{$it.title$}}
+		{\textbf{$it.name$}}
         {\href{$it.url$}{Github}}
     \vspace{-16pt}
 	\begin{itemize*}
-        $for(it.description)$
+        $for(it.highlights)$
 	    \item $it$
         $endfor$
 	\end{itemize*}
@@ -142,7 +152,7 @@ $phone$\ \ \textbullet \ \
 
     \begin{itemize*}
         $for(interests)$
-        \item $it.title$
+        \item $it.name$
         $endfor$
     \end{itemize*}
 
