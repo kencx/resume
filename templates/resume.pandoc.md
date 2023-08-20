@@ -10,7 +10,7 @@ $if(basics.phone)$
 $basics.phone$ •
 $endif$
 $if(basics.email)$
-$basics.email$ •
+[$basics.email$](mailto:$basics.email$) •
 $endif$
 $for(basics.profiles)$
 [$it.network$](https://$it.url$) •

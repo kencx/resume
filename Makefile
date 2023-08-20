@@ -1,8 +1,4 @@
-metadata ?= schema.json
-output ?= resume
-dcp := docker compose run --rm pandoc
-
-.PHONY: serve clean version intermediate html pdf all
+.PHONY: serve clean build pdf html all
 
 default: all
 
@@ -12,28 +8,14 @@ serve:
 clean:
 	rm outputs/*
 
-version:
-	@${dcp} --version
+build:
+	docker compose build
 
-intermediate: templates/resume.pandoc.md
-	@${dcp} --standalone \
-		--template=templates/resume.pandoc.md \
-		--output=outputs/intermediate.md \
-		--metadata-file=${metadata} \
-		README.md
+pdf:
+	docker compose run --rm pandoc --pdf outputs/resume.pdf
 
-html: intermediate templates/header.yml
-	@${dcp} --standalone \
-		--lua-filter=filters/list-tables-html.lua \
-		--output=outputs/${output}.html \
-		templates/header.yml \
-		outputs/intermediate.md
+html:
+	docker compose run --rm pandoc --html outputs/resume.html
 
-pdf: templates/resume.pandoc.tex
-	@${dcp} --standalone \
-		--template templates/resume.pandoc.tex \
-		--output=outputs/${output}.pdf \
-		--metadata-file=${metadata} \
-		README.md
-
-all: html pdf
+all:
+	docker compose run --rm pandoc

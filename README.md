@@ -25,35 +25,52 @@ $ make
 - Build the custom Docker image for Pandoc
 - Use the built Pandoc image to generate the PDF and HTML resume in `outputs/`
 
+To build with a different metadata file:
+
+```bash
+$ cp schema.json custom.json
+
+# make changes
+$ vim custom.json
+
+$ docker compose run --rm pandoc --metadata custom.json
+```
+
 ## How it works
+
+All commands listed below are the raw `pandoc` commands that will be run in the
+Python `build` script.
+
+- All templates are stored in `templates/`
+- All filters are stored in `filters/`
+- All static files (fonts, CSS) are stored in `static/`
+- See `defaults.yml` for default flags
 
 The PDF is generated from an existing LaTeX template:
 
 ```bash
-$ docker compose run --rm pandoc --standalone \
-		--template templates/resume.pandoc.tex \
-		--output=outputs/resume.pdf \
-		--metadata-file=${metadata} \
-		README.md
+$ pandoc --defaults defaults.yml \
+    --template templates/resume.pandoc.tex \
+    --output=outputs/resume.pdf \
+    README.md
 ```
 
 The HTML requires two steps:
 
 1. An intermediate Markdown file is generated from an existing Markdown template
-2. The custom `list-tables-html` filter is used to generate HTML tables:
+2. The intermediate Markdown is turned into HTML with a custom stylesheet and
+   lua-filter
 
 ```bash
-$ docker compose run --rm pandoc --standalone \
-		--template=templates/resume.pandoc.md \
-		--output=outputs/intermediate.md \
-		--metadata-file=${metadata} \
-		README.md
+$ pandoc --defaults defaults.yml \
+    --template=templates/resume.pandoc.md \
+    --output=outputs/intermediate.md \
+    README.md
 
-$ docker compose run --rm pandoc --standalone \
-		--lua-filter=filters/list-tables-html.lua \
-		--output=outputs/resume.html \
-		templates/header.yml \
-		outputs/intermediate.md
+$ pandoc --defaults defaults.yml \
+    --output=outputs/resume.html \
+    --css static/latex.css \
+    outputs/intermediate.md
 ```
 
 ## Future
@@ -64,5 +81,6 @@ $ docker compose run --rm pandoc --standalone \
 ## Credits
 
 - [latex.css](https://github.com/vincentdoerig/latex-css)
-- [lua-filters](https://github.com/pandoc/lua-filters/)
+- [list-table](https://github.com/pandoc-ext/list-table)
+- [pypandoc](https://github.com/JessicaTegner/pypandoc)
 - [box-icons](https://boxicons.com/)

@@ -1,0 +1,129 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import pypandoc
+import sys
+
+from pathlib import Path
+
+STATIC_FILE = Path("README.md")
+DEFAULT_FILE = Path("defaults.yml")
+TEMPLATE_DIR = Path("templates")
+TEX_TEMPLATE = Path(f"{TEMPLATE_DIR}/resume.pandoc.tex")
+MD_TEMPLATE = Path(f"{TEMPLATE_DIR}/resume.pandoc.md")
+
+
+def check(filename):
+    if not os.path.exists(filename) or not os.path.isfile(filename):
+        print(f"ERROR: {filename} does not exist!")
+        sys.exit(1)
+
+
+def version():
+    return pypandoc.get_pandoc_version()
+
+
+def build(fr, to, output, *args):
+    # check for existence of any parent directory
+    out = Path(output)
+    if out_dir := os.path.dirname(out):
+        if not os.path.isdir(out_dir):
+            os.mkdir(out_dir)
+
+    # rewrite to correct suffix
+    if out.suffix != f".{to}":
+        output = str(out.with_suffix(f".{to}"))
+
+    args = ["--defaults", DEFAULT_FILE, *args]
+    pypandoc.convert_file(fr, to=to, format="md", outputfile=output, extra_args=args)
+
+
+def generate_pdf(output, template, metadata=None):
+    check(TEX_TEMPLATE)
+
+    args = ["--template", template]
+    if metadata is not None:
+        args += ["--metadata-file", metadata]
+
+    build(STATIC_FILE, "pdf", output, *args)
+
+
+def generate_html(output, template, metadata=None):
+    check(MD_TEMPLATE)
+    intermediate = "outputs/intermediate.md"
+
+    args = ["--template", template]
+    if metadata is not None:
+        args += ["--metadata-file", metadata]
+
+    build(STATIC_FILE, "md", intermediate, *args)
+    build(intermediate, "html", output, "--css", "static/latex.css")
+    os.remove(intermediate)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        prog="build", description="Build resume with Pandoc"
+    )
+
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="store_true",
+        required=False,
+        help="Print Pandoc version",
+    )
+    parser.add_argument(
+        "-m",
+        "--metadata",
+        required=False,
+        metavar="FILE",
+        help="Custom metadata file",
+    )
+
+    me_group = parser.add_mutually_exclusive_group()
+    me_group.add_argument("--pdf", required=False, help="Build PDF file")
+    me_group.add_argument("--html", required=False, help="Build HTML file")
+    me_group.add_argument(
+        "-a", "--all", required=False, metavar="FILE", help="Build all (no suffix)"
+    )
+
+    args = parser.parse_args()
+
+    if args.version:
+        print(f"pypandoc: {pypandoc.__version__}")
+        print(f"pandoc: {version()}")
+        sys.exit(0)
+
+    if not os.path.isdir(TEMPLATE_DIR):
+        os.mkdir(TEMPLATE_DIR)
+
+    required_files = [STATIC_FILE, DEFAULT_FILE]
+    for f in required_files:
+        check(f)
+
+    metadata = args.metadata
+
+    if args.pdf:
+        generate_pdf(args.pdf, TEX_TEMPLATE, metadata)
+        sys.exit()
+
+    if args.html:
+        generate_html(args.html, MD_TEMPLATE, metadata)
+        sys.exit()
+
+    if args.all:
+        output = Path(args.all)
+
+        if suf := output.suffix:
+            output.removesuffix(suf)
+
+        # set default output dir
+        if len(output.parts) == 1:
+            output = "outputs" / output
+    else:
+        output = Path("outputs/resume")
+
+    generate_pdf(output, TEX_TEMPLATE, metadata)
+    generate_html(output, MD_TEMPLATE, metadata)

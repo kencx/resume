@@ -1,0 +1,9 @@
+standalone: true
+data-dir: templates
+filters:
+  - filters/list-tables-html.lua
+metadata-files:
+  - schema.json
+css:
+  - "../static/latex.css"
+email-obfuscation: javascript

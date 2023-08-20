@@ -29,7 +29,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Build sample resume
-        run: make all
+        run: docker compose run --rm pandoc
 
       - name: Deploy sample resume to GitHub Pages
         run: |
