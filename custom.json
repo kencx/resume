@@ -1,0 +1,215 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Kenneth Cheo",
+    "label": "",
+    "image": "",
+    "email": "ken@cheo.dev",
+    "phone": "",
+    "url": "ken.cheo.dev",
+    "summary": "",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "",
+      "countryCode": "",
+      "region": ""
+    },
+    "profiles": [
+      {
+        "network": "Github",
+        "username": "kencx",
+        "url": "github.com/kencx"
+      },
+      {
+        "network": "Linkedin",
+        "username": "kennethcheo",
+        "url": "linkedin.com/in/kennethcheo"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Toronto-Dominion Bank",
+      "location": "Singapore",
+      "description": "",
+      "position": "Application Release Engineer",
+      "url": "",
+      "startDate": "Sep 2021",
+      "endDate": "Present",
+      "summary": "",
+      "highlights": [
+        "Managed over 200 Java and NodeJS microservices on RHEL systems across OpenStack and AWS Cloud by automating regular server maintenance tasks and troubleshooting complex issues when they arise",
+        "Assisted in maintaining infrastructure and networks to ensure high stability and application uptime of more than 95% by proactive monitoring and prompt resolution of critical incidents",
+        "Worked with multiple cross-functional teams to deploy and promote applications from development to pre-production with CI/CD using Bitbucket, Jenkins and automation tools (Salt, Ansible)",
+        "Delivered technical support to developers and QA testers by promptly troubleshooting issues and maintaining up-to-date documentation"
+      ]
+    },
+    {
+      "name": "FDM Group",
+      "location": "Singapore",
+      "description": "",
+      "position": "FDM Training Programme",
+      "url": "",
+      "startDate": "Mar 2021",
+      "endDate": "Present",
+      "summary": "",
+      "highlights": [
+        "Participated in 13 weeks of technical training to develop multiple applications with Java and Spring framework, including a Forex trading platform and an interactive social media site"
+      ]
+    }
+  ],
+  "volunteer": [{
+      "organization": "St John Brigade Singapore",
+      "position": "Alumnus Officer",
+      "url": "",
+      "location": "Singapore",
+      "startDate": "2013",
+      "endDate": "2019",
+      "summary": "",
+      "highlights": [
+        "Structured the programme, syllabus, and teaching materials for various leadership camps as Programme Executive",
+        "Secured funding by liaising with various sponsors for the St John Walkathon Fundraiser"
+      ]
+  }],
+  "education": [{
+    "institution": "National University of Singapore",
+    "url": "",
+    "location": "Singapore",
+    "area": "Bachelor of Science (Hons) in Physics",
+    "studyType": "Bachelor",
+    "startDate": "2017",
+    "endDate": "2021",
+    "score": "4.1",
+    "courses": [
+      "Student Exchange Programme, University of Bristol, Jan 2020 - Jun 2020",
+      "Thesis on Detection and Analysis of High Redshift Galaxy Clusters"
+    ]
+  }],
+  "awards": [{}],
+  "publications": [{}],
+  "skills": [
+    {
+      "name": "Programming",
+      "level": "",
+      "keywords": [
+        "Bash",
+        "Go",
+        "Java",
+        "Python"
+      ]
+    },
+    {
+      "name": "Skills",
+      "level": "",
+      "keywords": [
+        "AWS",
+        "Linux Administration"
+      ]
+    },
+    {
+      "name": "Software",
+      "level": "",
+      "keywords": [
+        "Ansible",
+        "Docker",
+        "Git",
+        "Packer",
+        "Terraform"
+      ]
+    }
+  ],
+  "languages": [{}],
+  "interests": [
+    {
+      "name": "Creating and contributing to open source projects",
+      "keywords": []
+    },
+    {
+      "name": "Tinkering on personal home lab",
+      "keywords": []
+    }
+  ],
+  "references": [{}],
+  "projects": [
+    {
+      "name": "Flask REST API for Calibre",
+      "description": "",
+      "highlights": [
+        "Built a REST API with Python and Flask. The application is a wrapper around the Calibre executable that exposes a REST API for a Calibre library, providing a language-agnostic way to interact with the library. It contains extensive unit and integration test coverage with pytest and is containerized as a Docker image with Calibre and Nginx"
+      ],
+      "keywords": [
+        "Python",
+        "Flask",
+        "Docker"
+      ],
+      "startDate": "",
+      "endDate": "",
+      "url": "https://github.com/kencx/calibre-rest",
+      "roles": [],
+      "entity": "",
+      "type": ""
+    },
+    {
+      "name": "Comics Search Engine Web App",
+      "description": "",
+      "highlights": [
+        "Developed a search engine for xkcd comics with Go and Svelte. The application automatically downloads and indexes all data into Redis, and utilizes RediSearch and RedisJSON to support full text search and an extensive query syntax"
+      ],
+      "keywords": [
+        "Go",
+        "Redis",
+        "Svelte",
+        "Docker"
+      ],
+      "startDate": "",
+      "endDate": "",
+      "url": "https://github.com/kencx/sxkcd",
+      "roles": [],
+      "entity": "",
+      "type": ""
+    },
+    {
+      "name": "Personal Homelab",
+      "description": "",
+      "highlights": [
+        "Engineered a personal homelab with Hashicorp Nomad, Consul and Vault running on Proxmox VMs. The project utilizes Terraform and Packer for Infrastructure as Code and Ansible for automation to provision and manage the cluster efficiently"
+      ],
+      "keywords": [
+        "Terraform",
+        "Ansible",
+        "Packer"
+      ],
+      "startDate": "",
+      "endDate": "",
+      "url": "https://github.com/kencx/homelab",
+      "roles": [],
+      "entity": "",
+      "type": ""
+    },
+    {
+      "name": "Static Site with Visitor Counter",
+      "description": "",
+      "highlights": [
+        "Implemented a simple static site with a dynamic visitor counter using AWS S3, AWS Lambda, DynamoDB and API Gateway. The infrastructure is managed with Terraform and changes are deployed with CI/CD using Github Actions"
+      ],
+      "keywords": [
+        "AWS",
+        "Terraform",
+        "Python",
+        "Github Actions"
+      ],
+      "startDate": "",
+      "endDate": "",
+      "url": "https://github.com/kencx/cloudresumechallenge",
+      "roles": [],
+      "entity": "",
+      "type": ""
+    }
+  ],
+  "meta": {
+    "canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/sample.resume.json",
+    "version": "",
+    "lastModified": ""
+  }
+}
