@@ -1,0 +1,63 @@
+---
+name: Build
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    # if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build custom Pandoc image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Dockerfile
+          load: true
+          tags: kencx/pandoc:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build sample resume
+        run: docker compose run --rm pandoc
+
+      - name: Deploy sample resume to GitHub Pages
+        run: |
+          git worktree add gh-pages
+          git config user.name "Deploy from CI"
+          git config user.email ""
+
+          cd gh-pages
+          # Delete the ref to avoid keeping history.
+          git update-ref -d refs/heads/gh-pages
+          rm -rf *
+          mv ../static ../outputs/resume.* .
+          mv resume.html index.html
+          git add .
+          git commit -m "Deploy $GITHUB_SHA to gh-pages"
+          git push --force --set-upstream origin gh-pages
+
+      - name: Build resume
+        run: docker compose run --rm pandoc --metadata custom.json
+
+      - name: SCP files to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          source: "outputs/resume.*,static"
+          target: /home/${{ secrets.USERNAME }}/apps/site/resume
+          strip_components: 1
+          overwrite: true

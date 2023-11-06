@@ -1,0 +1,9 @@
+.git
+.github
+.gitignore
+docker-compose.yml
+Dockerfile
+.venv
+requirements.txt
+Makefile
+LICENSE

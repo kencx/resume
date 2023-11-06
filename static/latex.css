@@ -1,0 +1,444 @@
+/*!
+ * LaTeX.css (https://latex.now.sh/)
+ *
+ * Source: https://github.com/vincentdoerig/latex-css
+ * Licensed under MIT (https://github.com/vincentdoerig/latex-css/blob/master/LICENSE)
+*/
+
+@font-face {
+  font-family: 'Latin Modern Sans';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('./fonts/lmsans10-regular-webfont.woff') format('woff'),
+       url('./fonts/lmsans10-regular-webfont.woff2') format('woff2'),
+       url('./fonts/lmsans10-regular-webfont.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'Latin Modern Sans';
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+  src: url('./fonts/lmsans10-oblique-webfont.woff') format('woff'),
+       url('./fonts/lmsans10-oblique-webfont.woff2') format('woff2'),
+       url('./fonts/lmsans10-oblique-webfont.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'Latin Modern Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url('./fonts/lmsans10-bold-webfont.woff') format('woff'),
+       url('./fonts/lmsans10-bold-webfont.woff2') format('woff2'),
+       url('./fonts/lmsans10-bold-webfont.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: 'Latin Modern Sans';
+  font-style: italic;
+  font-weight: bold;
+  font-display: swap;
+  src: url('./fonts/lmsans10-boldoblique-webfont.woff') format('woff'),
+       url('./fonts/lmsans10-boldoblique-webfont.woff2') format('woff2'),
+       url('./fonts/lmsans10-boldoblique-webfont.ttf') format('truetype'),
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --body-color: hsl(0, 5%, 10%);
+  --body-bg-color: hsl(210, 20%, 98%);
+  --link-visited: hsl(0, 100%, 33%);
+  --link-focus-outline: hsl(220, 90%, 52%);
+  --pre-bg-color: hsl(210, 28%, 93%);
+  --kbd-bg-color: hsl(210, 5%, 100%);
+  --kbd-border-color: hsl(210, 5%, 70%);
+  --table-border-color: black;
+  --sidenote-target-border-color: hsl(55, 55%, 70%);
+  --footnotes-border-color: hsl(0, 0%, 39%);
+}
+
+.latex-dark {
+  --body-color: hsl(0, 0%, 86%);
+  --body-bg-color: hsl(0, 0%, 16%);
+  --link-visited: hsl(196 80% 77%);
+  --link-focus-outline: hsl(215, 63%, 73%);
+  --pre-bg-color: hsl(0, 1%, 25%);
+  --kbd-bg-color: hsl(0, 0%, 16%);
+  --kbd-border-color: hsl(210, 5%, 70%);
+  --table-border-color: white;
+  --sidenote-target-border-color: hsl(0, 0%, 59%);
+  --footnotes-border-color: hsl(0, 0%, 59%);
+  --proof-symbol-filter: invert(80%);
+}
+
+@media (prefers-color-scheme: dark) {
+   .latex-dark-auto {
+    --body-color: hsl(0, 0%, 86%);
+    --body-bg-color: hsl(0, 0%, 16%);
+    --link-visited: hsl(196 80% 77%);
+    --link-focus-outline: hsl(215, 63%, 73%);
+    --pre-bg-color: hsl(0, 1%, 25%);
+    --kbd-bg-color: hsl(0, 0%, 16%);
+    --kbd-border-color: hsl(210, 5%, 70%);
+    --table-border-color: white;
+    --sidenote-target-border-color: hsl(0, 0%, 59%);
+    --footnotes-border-color: hsl(0, 0%, 59%);
+    --proof-symbol-filter: invert(80%);
+  }
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Make default font-size 1rem and add smooth scrolling to anchors */
+html {
+  font-size: 1rem;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: 'Latin Modern Sans', Georgia, Cambria, 'Times New Roman', sans-serif;
+  line-height: 1.8;
+
+  max-width: 88ch;
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin: 0 auto;
+  padding: 1.5rem 0rem;
+  position: relative;
+
+  counter-reset: theorem definition sidenote-counter;
+
+  color: var(--body-color);
+  background-color: var(--body-bg-color);
+
+  text-rendering: optimizeLegibility;
+}
+
+/* Justify and hyphenate all paragraphs */
+p {
+  text-align: justify;
+  hyphens: auto;
+  -moz-hyphens: auto;
+  margin-top: 1rem;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make links red */
+a,
+a:visited {
+  color: var(--link-visited);
+}
+
+a:focus {
+  outline-offset: 2px;
+  outline: 2px solid var(--link-focus-outline);
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Prevent textarea from overflowing */
+textarea {
+  width: 100%;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Styles for inline code or code snippets */
+code,
+pre,
+kbd {
+  font-family: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  font-size: 85%;
+}
+pre {
+  padding: 1rem 1.4rem;
+  max-width: 100%;
+  overflow: auto;
+  border-radius: 4px;
+  background: var(--pre-bg-color);
+}
+pre code {
+  font-size: 95%;
+  position: relative;
+}
+kbd {
+  background: var(--kbd-bg-color);
+  border: 1px solid var(--kbd-border-color);
+  border-radius: 2px;
+  padding: 2px 4px;
+  font-size: 75%;
+}
+
+/* Better tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto; /* does not work because element is not block */
+  /* white-space: nowrap; */
+  counter-increment: caption;
+}
+
+th, td {
+  text-align: left;
+  line-height: 1.1;
+}
+
+/* allow scroll on the x-axis */
+.scroll-wrapper {
+  overflow-x: auto;
+}
+
+/* if a table is wrapped in a scroll wrapper,
+  the table cells shouldn't wrap */
+.scroll-wrapper > table td {
+  white-space: nowrap;
+}
+
+/* Center align the title */
+h1:first-child {
+  text-align: center;
+}
+
+/* Center definitions (most useful for display equations) */
+dl dd {
+  text-align: center;
+}
+
+/* Format the LaTeX symbol correctly (a higher up, e lower) */
+.latex span:nth-child(1) {
+  text-transform: uppercase;
+  font-size: 0.75em;
+  vertical-align: 0.28em;
+  margin-left: -0.48em;
+  margin-right: -0.15em;
+  line-height: 1ex;
+}
+
+.latex span:nth-child(2) {
+  text-transform: uppercase;
+  vertical-align: -0.5ex;
+  margin-left: -0.1667em;
+  margin-right: -0.125em;
+  line-height: 1ex;
+}
+
+/* Heading typography */
+h1 {
+  line-height: 3.25rem;
+}
+
+h2 {
+  line-height: 1.8rem;
+  /* margin-top: 0.5rem; */
+  border-bottom: 1px solid black;
+  font-size: 1.1rem;
+}
+
+h6 {
+  font-style: italic;
+  font-weight: normal;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.625rem;
+}
+
+/* custom styling */
+
+header {
+  display: none;
+}
+
+table ul {
+  margin: 0;
+  padding-left: 1em;
+  list-style-position: outside;
+}
+
+.footer p {
+  float: right;
+  font-size: 0.8rem;
+  margin-top: -1rem;
+}
+
+.icons {
+  position: absolute;
+  top: 1.5rem;
+  right: 0.5rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.contact p {
+  text-align: center;
+  margin-top: -0.5rem;
+}
+
+.skills ul {
+  line-height: 1.2;
+  margin: 0 auto;
+  padding-left: 0;
+  list-style: none;
+}
+
+.interests ul {
+  margin-top: 0;
+  line-height: 1.4;
+  padding-left: 0;
+  list-style-position: inside;
+}
+
+/* mobile */
+
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 0.8rem;
+    padding: 0rem 0.95rem;
+  }
+
+  .footer p {
+    font-size: 0.6rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .icons {
+    top: 0.5rem;
+    right: 1rem;
+  }
+
+  .icons a svg {
+    height: 0.95rem;
+    width: 0.95rem;
+  }
+}
+
+/* print  */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    filter: none !important;
+    -ms-filter: none !important;
+  }
+
+  .no-print, .no-print * {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    max-width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  a, a:visited {
+    text-decoration: underline;
+  }
+
+  hr {
+    height: 1px;
+    /* border: 0; */
+    border-bottom: 1px solid black;
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+    content: "";
+  }
+
+  pre, blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  tr, img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page :left {
+    margin: 5mm 20mm 5mm 10mm;
+    margin-top: 0;
+  }
+
+  @page :right {
+    margin: 5mm 10mm 5mm 20mm;
+    margin-top: 0;
+  }
+
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2, h3 {
+    page-break-after: avoid;
+  }
+}
